@@ -92,18 +92,21 @@ public class TicTacToeModel{
         
         /* INSERT YOUR CODE HERE */
 		
-		if ( isValidSquare(row,col) == true && isSquareMarked(row,col) == false ) {
-			if(xTurn == true){
+		if ( isValidSquare(row,col) && !isSquareMarked(row,col) ) {
+			if(xTurn){
 				grid[row][col] = Mark.X;
+				xTurn = false;
 			}
 			else{
 				grid[row][col] = Mark.O;
+				xTurn = true;
 			}
+			return true;
 			
 		}
 			
 		else{
-			showInputError();
+			return false;
 		}
         
     }
@@ -114,7 +117,7 @@ public class TicTacToeModel{
         
         /* INSERT YOUR CODE HERE */
 		
-		if( row <= width && col <= width ){
+		if( row < width && col < width ){
 			return true;
 		}
 		else{
@@ -165,9 +168,18 @@ public class TicTacToeModel{
            value */
         
         /* INSERT YOUR CODE HERE */
-		
-
-        return null; /* remove this line! */
+		if( isMarkWin(Mark.X) ){
+			return Result.X;
+		}
+		else if( isMarkWin(Mark.O ) == true ){
+			return Result.O;
+		}
+		else if( isTie() ){
+			return Result.TIE;
+		}
+		else{
+			return Result.NONE;
+		}
 
     }
 	
@@ -224,9 +236,15 @@ public class TicTacToeModel{
         /* Check the squares of the board to see if the game is a tie */
 
         /* INSERT YOUR CODE HERE */
-
-        return false; /* remove this line! */
-        
+		
+		for( row = 0; row < width; row++ ){
+			for(col = 0; col < width; col++){     // checks every square
+				if( grid[row][col] == Mark.EMPTY ){
+					return false;
+				}
+			}
+		}
+		return true;
     }
 
     public boolean isGameover(){
