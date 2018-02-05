@@ -77,9 +77,9 @@ public class TicTacToeModel{
 
         /* Initialize grid by filling every square with empty marks */
 		
-		for(int i = 0; i < width; i++){
-			for(int k = 0; k < width; k++){
-				grid[k][i] = Mark.EMPTY;
+		for(int row = 0; row < width; row++){
+			for(int col = 0; col < width; col++){
+				grid[col][row] = Mark.EMPTY;
 			}
 		}
     }
@@ -172,15 +172,51 @@ public class TicTacToeModel{
     }
 	
     private boolean isMarkWin(Mark mark) {
+		
+		private boolean xWon = true;
         
         /* Check the squares of the board to see if the specified mark is the
            winner */
         
         /* INSERT YOUR CODE HERE */
 		
-
-        return false; /* remove this line! */
-
+		for( int col = 0; col < width; col++ ){    // checks every column
+			xWon = true;
+			for( int row = 0; row < width; row++){
+				if( grid[row][col] != mark ){
+					xWon = false;
+				}
+				if(xWon == true){return true;}
+			}
+		}
+		
+		for( int row = 0; row < width; row++ ){   // checks every row
+			xWon = true;
+			for ( int col = 0; col < width; col++ ){
+				if( grid[row][col] != mark ){
+					xWon = false;
+				}
+				if(xWon == true){return true;}
+			}
+		}
+		
+		for( int row = 0; row < width; row++ ){   // checks diagonals top-right to bottom-left
+			int col = width - row - 1;
+			if( grid [row][col] != mark ){
+				xWon = false;
+			}
+			if(xWon == true){return true;}
+		}
+		
+		for( int x = 0; x < width; x++){         // checks diagonals bottom-right to top-left
+			int row = width - 1 - x;
+			int col = width - 1 - x;
+			if( grid[row][col] != mark){
+				xWon = false;
+			}
+			if(xWon == true){return true;}
+		}
+		return false;
     }
 	
     private boolean isTie() {
