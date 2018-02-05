@@ -143,8 +143,18 @@ public class TicTacToeModel{
         /* Return mark from the square at the specified location */
         
         /* INSERT YOUR CODE HERE */
-
-        return null; /* remove this line! */
+		
+		if( grid[row][col] == Mark.X){
+			return Mark.X;
+		}
+		
+		else if( grid[row][col] == Mark.O){
+			return Mark.O;
+		}
+		
+		else{
+			return Mark.EMPTY;
+		}
             
     }
 	
@@ -155,6 +165,7 @@ public class TicTacToeModel{
            value */
         
         /* INSERT YOUR CODE HERE */
+		
 
         return null; /* remove this line! */
 
@@ -166,6 +177,7 @@ public class TicTacToeModel{
            winner */
         
         /* INSERT YOUR CODE HERE */
+		
 
         return false; /* remove this line! */
 
