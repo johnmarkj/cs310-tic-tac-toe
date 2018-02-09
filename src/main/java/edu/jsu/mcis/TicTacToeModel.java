@@ -10,7 +10,7 @@ public class TicTacToeModel{
         
         X("X"), 
         O("O"), 
-        EMPTY(" ");
+        EMPTY("-");
 
         private String message;
         
@@ -79,7 +79,7 @@ public class TicTacToeModel{
 		
 		for(int row = 0; row < width; row++){
 			for(int col = 0; col < width; col++){
-				grid[col][row] = Mark.EMPTY;
+				grid[row][col] = Mark.EMPTY;
 			}
 		}
     }
@@ -96,12 +96,13 @@ public class TicTacToeModel{
 			if(xTurn){
 				grid[row][col] = Mark.X;
 				xTurn = false;
+				return true;
 			}
 			else{
 				grid[row][col] = Mark.O;
 				xTurn = true;
+				return true;
 			}
-			return true;
 			
 		}
 			
@@ -117,7 +118,7 @@ public class TicTacToeModel{
         
         /* INSERT YOUR CODE HERE */
 		
-		if( row < width && col < width ){
+		if( row >= 0 && row < width && col >= 0 && col < width ){
 			return true;
 		}
 		else{
@@ -132,7 +133,7 @@ public class TicTacToeModel{
         
         /* INSERT YOUR CODE HERE */
 		
-		if( row != Mark.EMPTY && col != Mark.EMPTY){
+		if( grid[row][col] != Mark.EMPTY){
 			return true;
 		}
 		else{
@@ -185,7 +186,7 @@ public class TicTacToeModel{
 	
     private boolean isMarkWin(Mark mark) {
 		
-		private boolean xWon = true;
+		boolean xWon = true;
         
         /* Check the squares of the board to see if the specified mark is the
            winner */
@@ -198,8 +199,8 @@ public class TicTacToeModel{
 				if( grid[row][col] != mark ){
 					xWon = false;
 				}
-				if(xWon == true){return true;}
 			}
+			if(xWon == true){return true;}
 		}
 		
 		for( int row = 0; row < width; row++ ){   // checks every row
@@ -208,26 +209,30 @@ public class TicTacToeModel{
 				if( grid[row][col] != mark ){
 					xWon = false;
 				}
-				if(xWon == true){return true;}
 			}
+			if(xWon == true){return true;}
 		}
 		
-		for( int row = 0; row < width; row++ ){   // checks diagonals top-right to bottom-left
-			int col = width - row - 1;
+		xWon = true;
+		
+		for( int row = 0; row < width; row++ ){ 		// checks diagonals top-right to bottom-left
+			int col = (width - row) - 1;
 			if( grid [row][col] != mark ){
 				xWon = false;
 			}
-			if(xWon == true){return true;}
 		}
+		if(xWon == true){return true;}
 		
-		for( int x = 0; x < width; x++){         // checks diagonals bottom-right to top-left
-			int row = width - 1 - x;
-			int col = width - 1 - x;
+		xWon = true;
+		
+		for( int x = 0; x < width; x++ ){			// checks diagonals bottom-right to top-left
+			int row = (width - 1) - x;
+			int col = (width - 1) - x;
 			if( grid[row][col] != mark){
 				xWon = false;
 			}
-			if(xWon == true){return true;}
 		}
+		if(xWon == true){return true;}
 		return false;
     }
 	
@@ -237,8 +242,8 @@ public class TicTacToeModel{
 
         /* INSERT YOUR CODE HERE */
 		
-		for( row = 0; row < width; row++ ){
-			for(col = 0; col < width; col++){     // checks every square
+		for( int row = 0; row < width; row++ ){
+			for( int col = 0; col < width; col++){     // checks every square
 				if( grid[row][col] == Mark.EMPTY ){
 					return false;
 				}
