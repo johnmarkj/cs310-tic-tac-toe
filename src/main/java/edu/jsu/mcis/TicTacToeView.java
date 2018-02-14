@@ -46,10 +46,10 @@ public class TicTacToeView extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent event){
 		String name = ((JButton) event.getSource()).getName();
 	
-	int row;
-	int col;
-	row = Character.getNumericValue(name.charAt(6));
-	col = Character.getNumericValue(name.charAt(7));
+	int row = (char) name.charAt(6) - 48;
+	int col = (char) name.charAt(7) - 48;
+	//row = Character.getNumericValue(name.charAt(6));
+	//col = Character.getNumericValue(name.charAt(7));
 	
 	model.makeMark(row, col);
 	
