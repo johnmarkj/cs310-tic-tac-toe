@@ -10,7 +10,7 @@ public class TicTacToeModel{
         
         X("X"), 
         O("O"), 
-        EMPTY("-");
+        EMPTY(" ");
 
         private String message;
         
@@ -79,7 +79,7 @@ public class TicTacToeModel{
 		
 		for(int row = 0; row < width; row++){
 			for(int col = 0; col < width; col++){
-				grid[row][col] = Mark.EMPTY;
+				grid[col][row] = Mark.EMPTY;
 			}
 		}
     }
@@ -215,8 +215,8 @@ public class TicTacToeModel{
 		
 		xWon = true;
 		
-		for( int row = 0; row < width; row++ ){ 		// checks diagonals top-right to bottom-left
-			int col = (width - row) - 1;
+		for( int row = 0; row < width; row++ ){   // checks diagonals top-right to bottom-left
+			int col = width - row - 1;
 			if( grid [row][col] != mark ){
 				xWon = false;
 			}
@@ -225,9 +225,9 @@ public class TicTacToeModel{
 		
 		xWon = true;
 		
-		for( int x = 0; x < width; x++ ){			// checks diagonals bottom-right to top-left
-			int row = (width - 1) - x;
-			int col = (width - 1) - x;
+		for( int x = 0; x < width; x++){         // checks diagonals bottom-right to top-left
+			int row = width - 1 - x;
+			int col = width - 1 - x;
 			if( grid[row][col] != mark){
 				xWon = false;
 			}

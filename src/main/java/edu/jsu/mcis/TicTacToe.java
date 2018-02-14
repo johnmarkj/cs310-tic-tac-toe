@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-
 public class TicTacToe {
 
     private static final int DEFAULT_WIDTH = 3;
@@ -30,12 +29,14 @@ public class TicTacToe {
 
         TicTacToeModel model = new TicTacToeModel(width);
         TicTacToeView view = new TicTacToeView(model);
-		
-		/* Setup GUI */
-		JFrame isWin = new JFrame("Tic-Tac_Toe");
-		isWin.setDefaultOperation(JFrame.EXIT_ON_CLOSE);
-		isWin.add(view);
-		isWin.pack();
-		isWin.setVisible(true);
+        
+        /* Create GUI */
+		JFrame window = new JFrame("Tic-Tac-Toe");
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.add(view);
+		window.pack();
+		window.setVisible(true);
+
+
     }
 }
